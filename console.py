@@ -66,12 +66,35 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
         else:
-            temp_key = arr[0] + "." + arr[1]
-            temp_obj = storage.all()
-            if temp_key not in temp_obj:
+            tempor_key = arr[0] + "." + arr[1]
+            tempor_obj = storage.all()
+            if tempor_key not in tempor_obj:
                 print("** no instance found **")
             else:
-                print(temp_obj[temp_key])
+                print(tempor_obj[tempor_key])
+
+    def do_destroy(self, args):
+        """Deletes an instance based on the class name and id
+        save the change into the JSON file"""
+        arr = args.split()
+        if len(arr) == 0:
+            print("** class name missing **")
+
+        elif arr[0] not in HBNBCommand.cmd_classes:
+            print("** class doesn't exist **")
+        
+        elif len(arr) < 2:
+            print("** instance id missing **")
+
+        else:
+            tempor_key = arr[0] + "." + arr[1]
+            tempor_obj = storage.all()
+            if tempor_key not in tempor_obj:
+                print("** no instance found **")
+            else:
+                del tempor_obj[tempor_key]
+                models.storage.save
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
