@@ -16,7 +16,18 @@ class HBNBCommand(cmd.Cmd):
     cmd_classes = {
             "BaseModel": BaseModel,
             }
-        
+    
+    def cmdloop(self, intro=None):
+        """Repeatedly issue a prompt, accept input, parse an initial prefix
+    off the received input, and dispatch to action methods, passing them
+    the remainder of the line as argument.
+    """
+        try:
+            super().cmdloop(intro)
+        except KeyboardInterrupt:
+            sys.exit()
+    
+    
     def do_EOF(self, line):
         """Handle EOF signal"""
         return True
@@ -61,14 +72,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 print(temp_obj[temp_key])
-
-    def precmd(self, line):
-        """Hook method executed just before the command is processed."""
-        try:
-            return super().precmd(line)
-        except KeyboardInterrupt:
-            print("\n")
-            sys.exit(0)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
