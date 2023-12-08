@@ -95,6 +95,15 @@ class HBNBCommand(cmd.Cmd):
                 del temporary_obj[temporary_key]
                 storage.save()
 
+    def do_all(self, cls):
+        """Prints all string representation of all instances based or not on the class name
+            Ex: $ all BaseModel or $ all"""
+        if not cls:
+            print([str(obj) for obj in storage.all().values()])
+        elif cls not in HBNBCommand.cmd_classes:
+            print("** class doesn't exist **")
+        else:
+            print([str(obj) for obj in storage.all().values() if isinstance(obj, HBNBCommand.cmd_classes[cls])])
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
