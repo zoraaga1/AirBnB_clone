@@ -87,13 +87,13 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
         else:
-            tempor_key = arr[0] + "." + arr[1]
-            tempor_obj = storage.all()
-            if tempor_key not in tempor_obj:
+            temporary_key = arr[0] + "." + arr[1]
+            temporary_obj = storage.all()
+            if temporary_key not in temporary_obj:
                 print("** no instance found **")
             else:
-                del tempor_obj[tempor_key]
-                models.storage.save
+                del temporary_obj[temporary_key]
+                storage.save()
 
 
 if __name__ == '__main__':
