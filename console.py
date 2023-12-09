@@ -7,7 +7,6 @@ import models
 import re
 from models.base_model import BaseModel
 from models import storage
-from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -46,12 +45,14 @@ class HBNBCommand(cmd.Cmd):
         """Creates new instance; save it to JSON file"""
         if not cls:
             print("** class name missing **")
-        elif cls not in HBNBCommand.cmd_classes:
-            print("** class doesn't exist **")
         else:
-            new_instance = HBNBCommand.cmd_classes[cls]()
-            new_instance.save()
-            print(new_instance.id)
+            cls_name = cls.split()[0]
+            if cls_name in self.cmd_classes and issubclass(self.cmd_classes[cls_name], BaseModel):
+                new_instance = self.cmd_classes[cls_name]()
+                new_instance.save()
+                print(new_instance.id)
+            else:
+                print("** class doesn't exist **") 
 
         
     def do_show(self, args):
