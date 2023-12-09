@@ -7,6 +7,7 @@ import models
 import re
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -16,6 +17,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     cmd_classes = {
             "BaseModel": BaseModel,
+            "User": User
             }
     
     def cmdloop(self, intro=None):
