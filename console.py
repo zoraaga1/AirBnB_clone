@@ -4,6 +4,7 @@
 
 import cmd, sys
 import models
+import re
 from models.base_model import BaseModel
 from models import storage
 
@@ -104,6 +105,35 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print([str(obj) for obj in storage.all().values() if isinstance(obj, HBNBCommand.cmd_classes[cls])])
+
+    def do_update(self, args):
+        """ Updates an instance based on the class name and id by adding or updating attribute 
+            Usage: update <class name> <id> <attribute name> "<attribute value>" """
+        arr = args.split()
+        if len(arr) < 1:
+            print("** class name missing **")
+
+        elif arr[0] not in HBNBCommand.cmd_classes:
+            print("** class doesn't exist **")
+
+        elif len(arr) < 2:
+            print("** instance id missing **")
+
+        elif len(arr) < 3:
+            print("** attribute name missing **")
+
+        elif len(arr) < 4:
+            print("** value missing **")
+        
+        else:
+            tempor_key = arr[0] + "." + arr[1]
+            tempor_obj = storage.all()
+
+            if tempor_key not in tempor_obj:
+                print("** no instance found **")
+            else:
+                setattr(tempor_obj[tempor_key], arr[2], arr[3])
+                storage.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
