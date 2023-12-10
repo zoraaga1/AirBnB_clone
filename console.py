@@ -2,7 +2,8 @@
 """Create the cmd interpreter"""
 
 
-import cmd, sys
+import cmd
+import sys
 import models
 import re
 from models.base_model import BaseModel
@@ -19,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
             "BaseModel": BaseModel,
             "User": User
             }
-    
+
     def cmdloop(self, intro=None):
         """Repeatedly issue a prompt, accept input, parse an initial prefix
     off the received input, and dispatch to action methods, passing them
@@ -29,8 +30,7 @@ class HBNBCommand(cmd.Cmd):
             super().cmdloop(intro)
         except KeyboardInterrupt:
             sys.exit()
-    
-    
+
     def do_EOF(self, line):
         """Handle EOF signal"""
         return True
@@ -49,16 +49,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             cls_name = cls.split()[0]
-            if cls_name in self.cmd_classes and issubclass(self.cmd_classes[cls_name], BaseModel):
+            if cls_name in self.cmd_classes and issubclass(self.cmd_classes[cls_name], BaseModel):  # noqa
                 new_instance = self.cmd_classes[cls_name]()
                 new_instance.save()
                 print(new_instance.id)
             else:
-                print("** class doesn't exist **") 
+                print("** class doesn't exist **")
 
-        
     def do_show(self, args):
-        """Prints the string representation of an instance based on the class name and id"""
+        """Prints the string representation of an instance based on the class name and id"""  # noqa
         arr = args.split()
         if len(arr) == 0:
             print("** class name missing **")
@@ -86,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
 
         elif arr[0] not in HBNBCommand.cmd_classes:
             print("** class doesn't exist **")
-        
+
         elif len(arr) < 2:
             print("** instance id missing **")
 
@@ -100,18 +99,18 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_all(self, cls):
-        """Prints all string representation of all instances based or not on the class name
+        """Prints all string representation of all instances based or not on the class name  # noqa
             Ex: $ all BaseModel or $ all"""
         if not cls:
             print([str(obj) for obj in storage.all().values()])
         elif cls not in HBNBCommand.cmd_classes:
             print("** class doesn't exist **")
         else:
-            print([str(obj) for obj in storage.all().values() if isinstance(obj, HBNBCommand.cmd_classes[cls])])
+            print([str(obj) for obj in storage.all().values() if isinstance(obj, HBNBCommand.cmd_classes[cls])])  # noqa
 
     def do_update(self, args):
-        """ Updates an instance based on the class name and id by adding or updating attribute 
-            Usage: update <class name> <id> <attribute name> "<attribute value>" """
+        """ Updates an instance based on the class name and id by adding or updating attribute  # noqa
+            Usage: update <class name> <id> <attribute name> "<attribute value>" """  # noqa
         arr = args.split()
         if len(arr) < 1:
             print("** class name missing **")
@@ -127,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
 
         elif len(arr) < 4:
             print("** value missing **")
-        
+
         else:
             tempor_key = arr[0] + "." + arr[1]
             tempor_obj = storage.all()
@@ -137,6 +136,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 setattr(tempor_obj[tempor_key], arr[2], arr[3])
                 storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
