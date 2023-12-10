@@ -23,7 +23,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     cmd_classes = {
             "BaseModel": BaseModel,
-            "User": User
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
             }
 
     def cmdloop(self, intro=None):
