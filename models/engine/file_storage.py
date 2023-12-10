@@ -2,7 +2,7 @@
 """Create FileStorage class"""
 import json
 from models.base_model import BaseModel
-
+from models.user import User
 class FileStorage:
     """
     Serializes instances to a JSON file and deserializes JSON file to instances
@@ -13,7 +13,17 @@ class FileStorage:
     Public instance methods:
         all(self)
         new(self, obj)
-        def save(self):
+
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -39,7 +39,8 @@ def save(self):
+  
         save(self)
         reload(self)
     """
@@ -37,7 +47,6 @@ class FileStorage:
         If the file doesnt exist, no exception should be raised)"""
         try:
             with open(self.__file_path, 'r', encoding="utf-8") as fi:
-
                 loaded_obj = json.load(fi)
                 for key, obj_dict in loaded_obj.items():
                     class_name, obj_id = key.split('.')
