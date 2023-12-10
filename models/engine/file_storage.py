@@ -26,15 +26,7 @@ class FileStorage:
         reload(self)
     """
     __file_path = "file.json"
-    __objects = {
-            "BaseModel": BaseModel,
-            "User": User,
-            "State": State,
-            "City": City,
-            "Amenity": Amenity,
-            "Place": Place,
-            "Review": Review
-            }
+    __objects = {}
 
     def all(self):
         """returns the dictionary __objects"""
