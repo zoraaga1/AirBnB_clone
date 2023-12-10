@@ -1,24 +1,19 @@
 #!/usr/bin/python3
-
 """Create the cmd interpreter"""
 
 
-
-
-
-
-
 import cmd
-
 import sys
-
 import models
-
 import re
-
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.amenity import Amenity
+from models.city import City 
+from models.place import Place
+from models.review import Review
+from models.state import State
 
 
 class HBNBCommand(cmd.Cmd):
@@ -26,12 +21,14 @@ class HBNBCommand(cmd.Cmd):
         an empty line + ENTER shouldnt execute anything
         code should not be executed when imported"""
     prompt = '(hbnb) '
-    cmd_classes = {
-
+    cmd_classes =  {
             "BaseModel": BaseModel,
-
-            "User": User
-
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
             }
 
 
