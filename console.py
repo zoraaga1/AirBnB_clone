@@ -116,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
         elif cls not in HBNBCommand.cmd_classes:
             print("** class doesn't exist **")
         else:
-            print([str(obj) for obj in storage.all().values() if isinstance(obj, HBNBCommand.cmd_classes[cls])])  # noqa
+            print([str(obj) for obj in HBNBCommand.cmd_classes[cls].all()])  # noqa
 
     def do_update(self, args):
         """ Updates an instance based on the class name and id by adding or updating attribute  # noqa
