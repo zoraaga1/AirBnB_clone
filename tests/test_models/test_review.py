@@ -2,10 +2,6 @@
 """Test cases"""
 
 
-#!/usr/bin/python3
-"""Test cases"""
-
-
 import unittest
 from models.review import Review
 
@@ -20,7 +16,6 @@ class TestReview(unittest.TestCase):
         self.assertEqual(review.text, "TestReview")
         self.assertEqual(review.user_id, "TestUser")
 
-    # Add more test cases for Review methods as needed
 
 if __name__ == '__main__':
     unittest.main()
