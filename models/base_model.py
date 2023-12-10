@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Create BaseModel class"""
-
 import uuid
 from datetime import datetime
 import models
@@ -13,12 +12,10 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """
         Initializes a new instance of the BaseModel class.
-
         Public instance attributes:
             id (str): A unique identifier for the instance.
             created_at (datetime): The datetime when the instance is created.
             updated_at (datetime): The datetime when the instance is last updated.  # noqa
-
         Args:
             *args: Unused.
             **kwargs: Dictionary of attribute names and values.

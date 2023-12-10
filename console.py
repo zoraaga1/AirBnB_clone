@@ -4,16 +4,11 @@
 
 import cmd
 import sys
-import re
 import models
+import re
 from models.base_model import BaseModel
-from models import storage
 from models.user import User
-from models.amenity import Amenity
-from models.city import City 
-from models.place import Place
-from models.review import Review
-from models.state import State
+from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -23,12 +18,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     cmd_classes = {
             "BaseModel": BaseModel,
-            "User": User,
-            "State": State,
-            "City": City,
-            "Amenity": Amenity,
-            "Place": Place,
-            "Review": Review
+            "User": User
             }
 
     def cmdloop(self, intro=None):
@@ -44,15 +34,12 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """Handle EOF signal"""
         return True
-
     def do_quit(self, line):
         """Quit command to exit the program\n"""
         return True
-
     def emptyline(self):
         """Do nothing on empty input line"""
         pass
-
     def do_create(self, cls):
         """Creates new instance; save it to JSON file"""
         if not cls:
@@ -71,13 +58,10 @@ class HBNBCommand(cmd.Cmd):
         arr = args.split()
         if len(arr) == 0:
             print("** class name missing **")
-
         elif len(arr) < 2:
             print("** instance id missing **")
-
         elif arr[0] not in HBNBCommand.cmd_classes:
             print("** class doesn't exist **")
-
         else:
             tempor_key = arr[0] + "." + arr[1]
             tempor_obj = storage.all()
@@ -85,7 +69,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 print(tempor_obj[tempor_key])
-
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id
         save the change into the JSON file"""
@@ -116,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
         elif cls not in HBNBCommand.cmd_classes:
             print("** class doesn't exist **")
         else:
-            print([str(obj) for obj in storage.all().values() if isinstance(obj, HBNBCommand.cmd_classes[cls])]) # noqa
+            print([str(obj) for obj in storage.all().values() if isinstance(obj, HBNBCommand.cmd_classes[cls])])  # noqa
 
     def do_update(self, args):
         """ Updates an instance based on the class name and id by adding or updating attribute  # noqa
@@ -124,13 +107,10 @@ class HBNBCommand(cmd.Cmd):
         arr = args.split()
         if len(arr) < 1:
             print("** class name missing **")
-
         elif arr[0] not in HBNBCommand.cmd_classes:
             print("** class doesn't exist **")
-
         elif len(arr) < 2:
             print("** instance id missing **")
-
         elif len(arr) < 3:
             print("** attribute name missing **")
 
@@ -140,7 +120,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             tempor_key = arr[0] + "." + arr[1]
             tempor_obj = storage.all()
-
             if tempor_key not in tempor_obj:
                 print("** no instance found **")
             else:
