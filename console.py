@@ -4,8 +4,8 @@
 
 import cmd
 import sys
-import models
 import re
+import models
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
