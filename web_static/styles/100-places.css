@@ -1,0 +1,158 @@
+/* styles/100-places.css */
+section.places {
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: flex;
+}
+
+.places h1 {
+    font-size: 30px;
+    margin: 0;
+    margin-bottom: 5px;
+    margin-left: -10px;
+    margin-right: -50px;
+    line-height: 1.2;
+    width: 100%;
+}
+
+.places article h2 {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 0.175em;
+}
+
+article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.price_by_night {
+    font-size: 30px;
+    color: #FF5A5F;
+    border: 4px solid #FF5A5F;
+    border-radius: 50%;
+    min-width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin-top: -60px;
+    margin-left: auto;
+    margin-bottom: 10px;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.information {
+    height: 80px;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    display: flex;
+    justify-content: space-around;
+}
+.places article .information p {
+    margin-top: 4em;
+    margin-left: -3.5em;
+    text-align: center;
+}
+.max_guest {
+    background: url("../images/icon_group.png") no-repeat;
+    width: 100px;
+    margin-left: 2.5em;
+    text-align: end;
+    display: inline-block;
+    background-attachment: local;
+}
+
+.number_rooms {
+    background: url("../images/icon_bed.png") no-repeat;
+    width: 100px;
+    margin-left: 1.5em;
+}
+
+.number_bathrooms {
+    background: url("../images/icon_bath.png") no-repeat;
+    text-align: end;
+    width: 100px;
+    margin-left: 1.5em;
+}
+
+.information div {
+    text-align: center;
+}
+
+.user {
+    margin-top: 10px;
+}
+
+.description {
+    margin-top: 10px;
+}
+
+.amenities {
+    margin-top: 40px;
+}
+
+.amenities h2 {
+    font-size: 16px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.amenities ul {
+    list-style: none;
+    padding: 0;
+}
+
+.amenities ul li {
+    display: flex;
+    align-items: center;
+}
+
+.amenities ul li::before {
+    content: ''; /* Empty content for the list item marker */
+    display: inline-block;
+    width: 20px; /* Adjust the width based on your icon size */
+    height: 20px; /* Adjust the height based on your icon size */
+    margin-right: 10px; /* Add some spacing between icon and text */
+}
+
+.amenities ul.pet_friendly::before {
+    background: url("../images/icon_pet_friendly.png") no-repeat;
+}
+
+.amenities ul.tv::before {
+    background: url("../images/icon_tv.png") no-repeat;
+}
+
+.reviews {
+    margin-top: 40px;
+}
+
+.reviews h2 {
+    font-size: 16px;
+    border-bottom: 1px solid #DDDDDD;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.reviews ul {
+    list-style: none;
+}
+
+.reviews li {
+    margin-bottom: 20px;
+}
+
+.reviews h3 {
+    font-size: 14px;
+}
+
+.reviews p {
+    font-size: 12px;
+}
